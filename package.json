@@ -3,15 +3,22 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@wdio/cli": "^5.9.1",
+    "chromedriver": "^74.0.0",
+    "dotenv": "^8.0.0",
+    "geckodriver": "^1.16.2",
+    "mocha": "^6.1.4",
     "react": "^16.8.6",
     "react-dom": "^16.8.6",
-    "react-scripts": "3.0.1"
+    "react-scripts": "3.0.1",
+    "selenium-webdriver": "^4.0.0-alpha.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "react-scripts start .env",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "test": "./node_modules/.bin/wdio wdio.conf.js",
+    "eject": "react-scripts eject",
+    "wdio": "wdio"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -27,5 +34,14 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@wdio/local-runner": "^5.9.4",
+    "@wdio/mocha-framework": "^5.9.4",
+    "@wdio/sauce-service": "^5.9.3",
+    "@wdio/spec-reporter": "^5.9.3",
+    "@wdio/sync": "^5.9.4",
+    "jest": "^24.8.0",
+    "webdriverio": "^5.9.1"
   }
 }

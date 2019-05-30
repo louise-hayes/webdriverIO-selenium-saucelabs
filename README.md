@@ -1,68 +1,70 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+App to explore UI tests on workgrid (in this case the navit dev toolbar)
 
-In the project directory, you can run:
+## Dependencies:
+```
+npm install --save-dev webdriverIO jest java mocha node (v 8.11>)
+npm install -g selenium-standalone
+npm install @wdio/cli
+npm install @wdio/sauce-service --save-dev   https://webdriver.io/docs/sauce-service.html
+```
 
-### `npm start`
+webdriverIO - https://webdriver.io/docs/gettingstarted.html a WebDriver test framework for Node.js, Webdriver/Selenium 2.0 javascript bindings for NodeJS.
+Uses selenium under the hood
+automates browser testing
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## Start selenium-standalone
+```
+selenium-standalone install
+selenium-standalone start
+(starts on port 4444 - webdriverio uses this)
+```
+## Build a webdriverIO config file (wdio.config.js)
+This file will specify the location of the tests, frameworks you want to use, reporters, browsers and general config of the project.
+```
+./node_modules/.bin/wdio config
+```
 
-### `npm test`
+###Tests
+3 ways to run the same test
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+``` 
+npm run test
+npm test
+./node_modules/.bin/wdio wdio.conf.js 
+```
+## Env vars
+Create a local env file with credentials for navit dev
+```
+USERNAME=
+PASSWORD=
+BASEURL=
+SAUCE_USERNAME=
+SAUCE_ACCESS_KEY=
+BUILD_NO=
+```
+## wdio.conf.js file:
+```
+ Where do you want to execute your tests? On my local machine
+ Which framework do you want to use? mocha
+ Shall I install the framework adapter for you? Yes
+ Where are your test specs located? ./test/specs/**/*.js
+ Which reporter do you want to use?
+ Do you want to add a service to your test setup?  selenium-standalone - https://github.com/webdriverio/wdio-selenium-standalone-service
+ Shall I install the services for you? Yes
+ Level of logging verbosity silent
+ In which directory should screenshots gets saved if a command fails? ./errorShots/
+ What is the base url? http://localhost
+```
+Other useful commands :
 
-### `npm run build`
+to set up browser testing without wdio.conf.js file
+```
+./geckodriver --port 4444
+```
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+To create the wdio config file
+```
+./node_modules/.bin/wdio config
+```
