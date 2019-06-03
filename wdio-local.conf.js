@@ -1,16 +1,11 @@
-// const { SAUCE_USERNAME, SAUCE_ACCESS_KEY } = process.env
-// require('dotenv').config();
 
-// const getPort = require('get-port')
-// let { PORT } = process.env || 3000
+const { BASEURL } = process.env
+require('dotenv').config(); // ##unset this when running locally
 
 exports.config = {
-    // user: process.env.SAUCE_USERNAME,
-    // key: process.env.SAUCE_ACCESS_KEY,
-    // updateJob: true,
-    // sauceConnect: true,
-    debug: true,
-    execArgv: ['--inspect=127.0.0.1:5859'],
+    // to run tests with launch.json debugger
+    // debug: true,
+    // execArgv: ['--inspect=127.0.0.1:5859'],
 
     //
     // ====================
@@ -61,40 +56,22 @@ exports.config = {
     capabilities: [
         {
             browserName: 'chrome',
-            'goog:chromeOptions' : {
+            'goog:chromeOptions': {
                 args: ["--disable-web-security"]
-            }
-            // version: 74,
-            // name: 'Chrome Selenium tests',
-            
-            // build: process.env.BUILD_NUMBER
-        }
+            },
+        },
         // {
+
         //     browserName: 'firefox',
-        //     name: 'FF Selenium tests',
-        // }
+        //     version: '47.0',
+        //     extendedDebugging: true,
+        //     // 'sauce:options': {
+        //     //     seleniumVersion: '3.4.0',
 
-        //  {
-        //     browserName: 'internet explorer',
-        //     // version: 11,
-        //     name: 'IE Selenium tests',
-        //     //  build: '99'
-        //  },
+        //     // },
+        //     name: 'FFox'
+        // },
 
-
-        // {
-        //     browserName: 'safari',
-        //     version: 12,
-        //     name: 'Safari Selenium tests',
-        // //     build: process.env.BUILD_NUMBER
-        // }
-        // {
-        //     browserName: 'internet explorer',
-        //     version: 11,
-        //     name: 'IE Selenium tests',
-        //     build: process.env.BUILD_NUMBER
-        // 
-        // }
     ],
     //
     // ===================
@@ -103,11 +80,11 @@ exports.config = {
     // Define all options that are relevant for the WebdriverIO instance here
     //
     // Level of logging verbosity: trace | debug | info | warn | error | silent
-    
-  
-   
-    sync: true,
-    logLevel: 'silent',
+
+
+
+    // sync: true,
+    logLevel: 'trace',
     coloredLogs: true,
     screenshotPath: './test-reports/error-shots/',
     //
@@ -133,7 +110,7 @@ exports.config = {
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
     // If your `url` parameter starts without a scheme or `/` (like `some/path`), the base url
     // gets prepended directly.
-    baseUrl: 'https://workgrid-development.us-east-1.np.paas.lmig.com/navit/home',
+    baseUrl: BASEURL,
     //
     // Default timeout for all waitFor* commands.
     waitforTimeout: 10000,
@@ -149,14 +126,10 @@ exports.config = {
     // Services take over a specific job you don't want to take care of. They enhance
     // your test setup with almost no effort. Unlike plugins, they don't add new
     // commands. Instead, they hook themselves up into the test process.
-    services: ['sauce'],
+    // services: ['sauce'],
+
     //This stuff was given by Tucekr's Example:
     //https://git.forge.lmig.com/projects/LFTEST/repos/node.js-saucelabs/browse/examples/wdio/wdio.conf.js#31-35
-    // sauceConnect: true,
-    // sauceConnectOpts: {
-    //     tunnelDomains: 'localhost',
-    //     logger: console.log
-    // },
     //
     // Framework you want to run your specs with.
     // The following are supported: Mocha, Jasmine, and Cucumber

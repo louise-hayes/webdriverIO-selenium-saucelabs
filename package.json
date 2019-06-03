@@ -4,8 +4,11 @@
   "private": true,
   "dependencies": {
     "@wdio/cli": "^5.9.1",
+    "chai": "^4.2.0",
+    "chai-webdriver": "^1.2.0",
     "chromedriver": "^74.0.0",
     "dotenv": "^8.0.0",
+    "execa": "^1.0.0",
     "geckodriver": "^1.16.2",
     "mocha": "^6.1.4",
     "react": "^16.8.6",
@@ -16,7 +19,8 @@
   "scripts": {
     "start": "react-scripts start .env",
     "build": "react-scripts build",
-    "test": "./node_modules/.bin/wdio wdio.conf.js",
+    "test:sauce": "./node_modules/.bin/wdio wdio-sauce.conf.js",
+    "test:local": "./node_modules/.bin/wdio wdio-local.conf.js",
     "eject": "react-scripts eject",
     "wdio": "wdio"
   },

@@ -21,7 +21,7 @@
             // "internalConsoleOptions": "neverOpen",
             // "program": "${workspaceFolder}/node_modules/jest/bin/jest",
             "env":{
-                "USERNAME": "louise.hayes@libertymutual.com",
+                "USERNAME": "louise.hayes@workgrid.com",
                 "PASSWORD": "NavitRules!"
             },
             "args": [

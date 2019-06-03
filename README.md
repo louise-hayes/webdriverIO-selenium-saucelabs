@@ -3,15 +3,22 @@ App to explore UI tests on workgrid (in this case the navit dev toolbar)
 
 ## Dependencies:
 ```
-npm install --save-dev webdriverIO jest java mocha node (v 8.11>)
+node (v 8.11>)
+npm install --save-dev webdriverIO jest java mocha chai-webdriver @wdio/cli @wdio/sauce-service
 npm install -g selenium-standalone
-npm install @wdio/cli
-npm install @wdio/sauce-service --save-dev   https://webdriver.io/docs/sauce-service.html
-```
 
-webdriverIO - https://webdriver.io/docs/gettingstarted.html a WebDriver test framework for Node.js, Webdriver/Selenium 2.0 javascript bindings for NodeJS.
+brew cask install sauce-connect
+```
+webdriverIO
+
+https://webdriver.io/docs/gettingstarted.html 
+
+https://webdriver.io/docs/sauce-service.html (to set up saucelabs integration)
+https://webdriver.io/docs/api/webdriver.html (USefull for manipulating browser object)
+
+a WebDriver test framework for Node.js, Webdriver/Selenium 2.0 javascript bindings for NodeJS.
 Uses selenium under the hood
-automates browser testing
+Automates browser testing
 
 
 ## Start selenium-standalone
@@ -25,14 +32,24 @@ This file will specify the location of the tests, frameworks you want to use, re
 ```
 ./node_modules/.bin/wdio config
 ```
+## start geckodriver for firefox:
+ ```
+ ./geckodriver --port 4444
+```
+
+Gecko is a web browser engine used in many applications developed by Mozilla Foundation and the Mozilla Corporation. Gecko Driver is the link between your tests in Selenium and the Firefox browser. GeckoDriver is a proxy for using W3C WebDriver-compatible clients to interact with Gecko-based browsers i.e.
 
 ###Tests
-3 ways to run the same test
+ways to run the test
 
 ``` 
-npm run test
-npm test
-./node_modules/.bin/wdio wdio.conf.js 
+npm run test:local will run the test locally 
+
+npm run test:sauce : this will run the test in saucelabs
+
+npm test - this will run the test locally
+
+./node_modules/.bin/wdio wdio-sauce.conf.js 
 ```
 ## Env vars
 Create a local env file with credentials for navit dev
@@ -68,3 +85,10 @@ To create the wdio config file
 ```
 ./node_modules/.bin/wdio config
 ```
+todo:
+
+For sauceconnect:
+needd script to turn on debug options (only required for debug in launch.json)
+
+need to add script to run gecko and selenium-standalonen forn npm test local
+
