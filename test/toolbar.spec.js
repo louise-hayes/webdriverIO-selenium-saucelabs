@@ -24,7 +24,7 @@ describe('Log in / Checks Toolbar rendered & clickable', () => {
     it('Switch to iframe and Check toolbar renders', async () => {
         // browser frames are accessible via index, only 0 works - not 1 or 2
         await this.page.switchIframe()
-        // await browser.switchToFrame(0);
+        await browser.switchToFrame(0);
         let toolBar = await this.page.getToolBar()
         let toolbarText = await toolBar.getText()
         assert.equal(toolbarText, 'To Know\nTo Do\nAssistant\nApps\nActivity\nSettings')
@@ -32,14 +32,16 @@ describe('Log in / Checks Toolbar rendered & clickable', () => {
 
     it('clicks To Do / checks the detailed card ', () => {
 
-        const todoSummary = browser.$("(.//*[normalize-space(text()) and normalize-space(.)='To Know'])[1]/following::img[1]")
+        // const todoSummary = browser.$("(.//*[normalize-space(text()) and normalize-space(.)='To Know'])[1]/following::img[1]")
+        // const todoSummary = browser.$("(.//*[normalize-space(text()) and normalize-space(.)='To Know'])[1]/following::img[1]")
+        const todoSummary = browser.$('div=To Do')
         todoSummary.click()
         browser.waitUntil(() => {
-            return $("(.//*[normalize-space(text()) and normalize-space(.)='New Content'])[1]/following::div[2]").getText() === "You're all done for now. Good work!"
+            return $("div=You're all done for now. Good work!")
         }, 5000, 'expected element to be rendered after 5s');
-        let todoDetail = browser.$("(.//*[normalize-space(text()) and normalize-space(.)='New Content'])[1]/following::div[2]")
+        let todoDetail = browser.$("div=You're all done for now. Good work!")
         const text = todoDetail.getText()
-        console.log(`text ${text}`)
+        // console.log(`text ${text}`)
         assert.equal(text, "You're all done for now. Good work!");
 
 
