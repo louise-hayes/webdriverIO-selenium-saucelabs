@@ -4,8 +4,6 @@
   "private": true,
   "dependencies": {
     "@wdio/cli": "^5.9.1",
-    "chai": "^4.2.0",
-    "chai-webdriver": "^1.2.0",
     "chromedriver": "^74.0.0",
     "dotenv": "^8.0.0",
     "execa": "^1.0.0",

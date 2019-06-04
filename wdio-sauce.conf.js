@@ -1,9 +1,6 @@
 const { SAUCE_USERNAME, SAUCE_ACCESS_KEY, BASEURL } = process.env
 require('dotenv').config(); // ##unset this when running locally
 
-// const getPort = require('get-port')
-// let { PORT } = process.env || 3000
-
 exports.config = {
     user: SAUCE_USERNAME,
     key: SAUCE_ACCESS_KEY,
@@ -27,11 +24,14 @@ exports.config = {
     specs: [
         './test/*.spec.js'
     ],
+    
     // Patterns to exclude.
-    exclude: [
-        // 'path/to/excluded/files'
-    ],
+    // exclude: [
+    //     // 'path/to/excluded/files'
+    // ],
     //
+   
+   
     // ============
     // Capabilities
     // ============
@@ -65,18 +65,17 @@ exports.config = {
 
         //     build: process.env.BUILD_NUMBER
         },
-        // { 
-        //     browserName: "internet explorer",
-        //     version: 11,
-        //     extendedDebugging: true,
-        //     name: "IE11"
-        // },
         { 
-            browserName: "MicrosoftEdge",
-           
-            // extendedDebugging: true,
-            name: "Edge"
+            browserName: "internet explorer",
+            version: 11,
+            extendedDebugging: true,
+            name: "IE11"
         },
+        // { 
+        //     browserName: "MicrosoftEdge",
+        //     version: 15.15063,
+        //     name: "Edge"
+        // },
 
         // {
     
@@ -98,6 +97,8 @@ exports.config = {
         // }
        
     ],
+  
+   
     //
     // ===================
     // Test Configurations
@@ -106,12 +107,11 @@ exports.config = {
     //
     // Level of logging verbosity: trace | debug | info | warn | error | silent
 
-
-
     sync: true,
-    logLevel: 'debug',
+    logLevel: 'info',
     coloredLogs: true,
-    screenshotPath: './test-reports/error-shots/',
+    screenshotPath: './test-reports/screen-shots/',
+
     //
     // Set specific log levels per logger
     // loggers:
@@ -127,9 +127,11 @@ exports.config = {
     // '@wdio/applitools-service': 'info'
     // },
     //
+   
     // If you only want to run your tests until a specific amount of tests have failed use
     // bail (default is 0 - don't bail, run all tests).
     bail: 0,
+  
     //
     // Set a base URL in order to shorten url command calls. If your `url` parameter starts
     // with `/`, the base url gets prepended, not including the path portion of your baseUrl.
@@ -142,7 +144,7 @@ exports.config = {
     //
     // Default timeout in milliseconds for request
     // if Selenium Grid doesn't send response
-    connectionRetryTimeout: 90000,
+    connectionRetryTimeout: 60000,
     //
     // Default request retries count
     connectionRetryCount: 3,
