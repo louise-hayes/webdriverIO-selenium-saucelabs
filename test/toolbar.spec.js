@@ -22,62 +22,46 @@ describe('Log in / Checks Toolbar rendered & clickable', () => {
     })
 
     it('Switch to iframe and Check toolbar renders', async () => {
-        // browser frames are accessible via index, only 0 works - not 1 or 2
-        await this.page.switchIframe()
-        await browser.switchToFrame(0);
+        await this.page.getIframe()
+        await this.page.switchToFrame();
         let toolBar = await this.page.getToolBar()
         let toolbarText = await toolBar.getText()
         assert.equal(toolbarText, 'To Know\nTo Do\nAssistant\nApps\nActivity\nSettings')
     })
 
-    it('clicks To Do / checks the detailed card ', () => {
-
-        // const todoSummary = browser.$("(.//*[normalize-space(text()) and normalize-space(.)='To Know'])[1]/following::img[1]")
-        // const todoSummary = browser.$("(.//*[normalize-space(text()) and normalize-space(.)='To Know'])[1]/following::img[1]")
-        const todoSummary = browser.$('div=To Do')
+    it('clicks To Do & checks the detailed card ', async () => {
+        const todoSummary = await this.page.getDiv('To Do')
         todoSummary.click()
-        browser.waitUntil(() => {
-            return $("div=You're all done for now. Good work!")
-        }, 5000, 'expected element to be rendered after 5s');
-        let todoDetail = browser.$("div=You're all done for now. Good work!")
-        const text = todoDetail.getText()
-        // console.log(`text ${text}`)
+        let cardDetail = await this.page.getDetail("You're all done for now. Good work!")
+        let text = await cardDetail.getText()
         assert.equal(text, "You're all done for now. Good work!");
+    })
 
-
-
-
-
-
-
-
-
-
-        // const todoSummary = $("(.//*[normalize-space(text()) and normalize-space(.)='To Know'])[1]/preceding::img[1]")
-        // // driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='To Do'])[1]/following::img[1]")).click();
-        // todoSummary.click()
-
-        // todoSummary.saveScreenshot('./test/test-reports/screen-shots/elemScreenshot.png');
-        // const todoDetail = $("(.//*[normalize-space(text()) and normalize-space(.)='New Content'])[1]/following::div[2]")
-        // assert.equal(todoDetail.getText(), "You're all done for now. Good work!");
-
-
-
+    it('clicks To Know & checks the detailed card ', async () => {
+        const todoSummary = await this.page.getDiv('To Know')
+        todoSummary.click()
+        let cardDetail = await this.page.getDetail("Meeting")
+        let text = await cardDetail.getText()
+        assert.equal(text, "MEETING");
     })
 
 
+    it('clicks Assistant & checks the detailed card ', async () => {
+        const todoSummary = await this.page.getDiv('Assistant')
+        todoSummary.click()
+        let cardDetail = await this.page.getImage("systemIcon")
+        // console.log("image nane " + cardDetail)
+        // let text = await cardDetail.getText()
+        // assert.equal(text, "systemIcon");
+    })
 
-    //let my_frame = $('iframe[name="WorkgridFrame"]').value; //this passes - no error - keep for future use
-
-    /* all these fail */
-    // browser.findElement('.', 'Chicklet__StyledChicklet-tRQjj');//nope
-    // const src = browser.$('*=workgrid'); //since above line fails then elemenent does not exist
-    // browser.switchTo().frame("WorkgridFrame");//throws an error: switchTo function is not part of browser object
-    // let el = browser.$('Chicklet__StyledChicklet-tRQjj'); //not able to find this - says element does not exist 
-    // return browser.frame('WorkgridFrame.content').then(function(el)
-    // return browser.frame(el.value).then(function() {
-    // return browser.getHTML('head').then(function(html) {})
-
+    it('clicks Apps & checks the detailed card ', async () => {
+        const todoSummary = await this.page.getDiv('Apps')
+        todoSummary.click()
+        // let cardDetail = await this.page.getDetail("Test Summary Fail")
+        // let text = await cardDetail.getText()
+        // assert.equal(text, "Test Summary Fail");
+    })
 
 })
 
