@@ -23,7 +23,7 @@ describe('Log in / Checks Toolbar rendered & clickable', () => {
         assert.equal(hostHeader.split(' ').slice(0, 3).join(' '), 'Today at Navit')
     })
 
-    it('Switch to iframe and Check toolbar renders', async () => {
+    it('Switch to iframe and Check toolbar renders To Do / To Know / Assistant/ Apps panels', async () => {
         await this.toolBar.getToolBarFrame();
         await this.toolBar.switchToFrame();
         let toolBar = await this.toolBar.getToolBar()

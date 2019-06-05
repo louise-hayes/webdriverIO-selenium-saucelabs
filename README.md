@@ -87,19 +87,12 @@ https://webdriver.io/blog/2018/12/19/webdriverio-v5-released.html#how-to-upgrade
 
 todo:
 
-need script to turn on debug options (only required for debug in launch.json)
+a script to turn on debug options (only required for debug in launch.json)
 add script to run gecko and selenium-standalone when npm test local run
 exband on page model object
-selectors options: currently using XPATH for toolbar selector as class selector not working (Chicklet__StyledChicklet-tRQjj lexHBV)
-// browser.findElement('.', 'Chicklet__StyledChicklet-tRQjj');//nope
-Using Katalon to record screen actions and grab ids/class/selector names.
-Katalon  xpath samples
+Using Katalon selenium IDE - to record screen actions and grab ids/class/selector names where needed
 
- driver.get("https://workgrid-development.us-east-1.np.paas.lmig.com/navit/login");
-    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Terms and Conditions'])[1]/preceding::input[1]")).click();
-    // ERROR: Caught exception [ERROR: Unsupported command [selectFrame | index=0 | ]]
-    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='To Know'])[1]/preceding::img[1]")).click();
-    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='To Know'])[1]/following::img[1]")).click();
-    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='To Do'])[1]/following::img[1]")).click();
-    driver.findElement(By.xpath("(.//*[normalize-space(text()) and normalize-space(.)='Assistant'])[1]/following::img[1]")).click();
-  }
+E2E testing Article on webdriverIO sauce mocha
+https://link.medium.com/OtjMTqvmgX
+
+ 
